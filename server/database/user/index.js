@@ -8,10 +8,13 @@
 //   email:{type: String, required: true},
 //   password: {type: String, required: true},
 //   address: [{detail: {type:String}, for: {type: String}}],
-//   phoneNumber: [{type:Number}]
+//   phoneNumber: [{type:Number}],
 // // address and phoneNumberare array that's why we use []
-
-// })
+// },
+// {
+//   timestamps: true,
+// }
+// );
 
 // export const UserModel = mongoose.model("Users", UserSchema);
 
@@ -23,7 +26,7 @@ import bcrypt from "bcryptjs";
 const UserSchema = new mongoose.Schema(
   {
     fullName: { type: String, required: true },
-    email: { type: String, required: true },
+    email: {type: String, required: true},
     password: { type: String },
     address: [{ details: { type: String }, for: { type: String } }],
     phoneNumber: [{ type: Number }],
@@ -32,7 +35,7 @@ const UserSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+ // we are cretaing statics and methods.
 UserSchema.methods.generateJwtToken = function () {
   return jwt.sign({ user: this._id.toString() }, "ZomatoAPP");
 };
@@ -42,7 +45,7 @@ UserSchema.statics.findByEmailAndPhone = async ({ email, phoneNumber }) => {
   const checkUserByEmail = await UserModel.findOne({ email });
   const checkUserByPhone = await UserModel.findOne({ phoneNumber });
 
-  if (checkUserByEmail || checkUserByPhone) {
+  if (checkUserByEmail || checkUserByPhone) { 
     throw new Error("User already exists!");
   }
 
