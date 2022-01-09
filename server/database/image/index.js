@@ -6,7 +6,7 @@
 // });
 
 // export const ImageModel = mongoose.model("Images", ImageSchema);
- 
+
 
 import mongoose from "mongoose";
 
@@ -23,6 +23,5 @@ const ImageSchema = new mongoose.Schema(
   }
 );
 
-export const ImageModel = mongoose.model("Images", ImageSchema);
+export const ImageModel = mongoose.model("Image", ImageSchema);
 
- 
