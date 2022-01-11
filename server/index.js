@@ -25,8 +25,12 @@ import passport from "passport";
 
 //Database connection
 import ConnectDB from './database/connection';
+
 //google authentication config
 import googleAuthConfig from './config/google.config';
+
+// private route authentication config
+import privateRouteConfig from './config/route.config';
 
 // require("@babel/core").transform("code",{
 //     presets: ["@babel/preset-env"],
@@ -38,12 +42,13 @@ import Restaurant from './API/Restaurant';
 import Food from './API/Food';
 import Menu from './API/Menu';
 import Image from './API/Image';
-import Orders from './API/Orders';
-import Reviews from './API/Reviews';
+import Order from './API/Orders';
+import Review from './API/Reviews';
+import User from "./API/User";
 
 //passport config
 googleAuthConfig(passport);
-
+privateRouteConfig(passport);
 
 const zomato = express();
 zomato.use(cors());
@@ -61,8 +66,9 @@ zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
 zomato.use("/menu", Menu);
 zomato.use("/image", Image);
-zomato.use("/order",Orders);
-zomato.use("/review",Reviews);
+zomato.use("/order",Order);
+zomato.use("/review",Review);
+zomato.use("/user", User);
 
 
 zomato.listen(4000, () => {
