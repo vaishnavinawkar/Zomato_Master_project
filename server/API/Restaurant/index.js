@@ -4,6 +4,12 @@ import express from 'express';
 //database modal 
 import {RestaurantModel} from '../../database/allModels';
 
+//Validation
+
+import { ValidateRestaurantCity, ValidateRestaurantSearchString } from '../../validation/restaurant';
+
+import { validateID } from '../../validation/common';
+
 const Router = express.Router();
 
 /* 
@@ -17,6 +23,8 @@ const Router = express.Router();
 
 Router.get('/',async (res,req)=> {
     try{
+
+        await ValidateRestaurantCity(req.query);
         //http://loaclhost:4000/restaurant/?city=ncr
         const {city}= req.query;
         const restaurants = await RestaurantModel.find({city});
@@ -46,6 +54,7 @@ Router.get('/',async (res,req)=> {
  //http://loaclhost:4000/restaurant/213455gfjdnfkjdh35
 Router.get('/:_id',async (res, req)=>{
     try{
+        await validateID(re.params);
         const {_id}= req.params;
         const restaurant = await RestaurantModel.findById(_id);
 
@@ -70,6 +79,7 @@ Router.get('/:_id',async (res, req)=>{
 
 Router.get('/search/:searchString', async( res, req)=>{
     try{
+        await ValidateRestaurantSearchString(req.params);
         const {searchString} = req.params;
         const restaurants= await RestaurantModel.find({
             name: { $regex: searchString, $options: "i"},
@@ -78,7 +88,7 @@ Router.get('/search/:searchString', async( res, req)=>{
         if(!restaurants) return res.status(404).json({error:`No restaurants match with ${searchString}`});
 
         return res.json({restaurants});
-          
+
 
     }catch(error){
         return res.status(500).json({error: error.message});

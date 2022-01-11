@@ -8,6 +8,7 @@ const GoogLeStrategy = googleOAuth.Strategy;
 export default (passport) => {
     passport.use(
         new GoogLeStrategy(
+            
             {
                 // clientID: process.env.GOOGLE_CLIENT_ID,
                 // clientSecret: process.env.GOOGLE_CLIENT_SCERET,
@@ -27,7 +28,7 @@ export default (passport) => {
                 try{
                         // check if the user exist
                         const user = await UserModel.findOne({email: newUser.email});
-                       
+
                         if(user){
                             //generate token
                             const token = user.generateJwtToken();

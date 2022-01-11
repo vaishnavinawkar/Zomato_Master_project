@@ -19,3 +19,8 @@ first steop is hashing ; hagdabakjhabfsjfhdlkalufas835f398bc*&
 second step is Salting(10) ;  kjhabfsjfhdlkalufas835f398bc*&
 
 
+
+## TAsks
+
+1. Create required validate for rest of the routes.
+
