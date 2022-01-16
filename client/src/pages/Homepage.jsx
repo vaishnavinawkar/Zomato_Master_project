@@ -1,13 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-function Homepage() {
+function HomePage() {
     return (
         <div>
-            Homepage
+           Homepage
         </div>
     )
 }
 
-export default Homepage;
-
-
+export default HomePage;

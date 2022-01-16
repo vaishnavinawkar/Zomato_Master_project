@@ -1,19 +1,21 @@
-
 import './App.css';
 
-//HOC
-import HomeLayoutHoc from './HOC/Home.hoc';
 
-//Pages
-import Homepage from './pages/Homepage';
+//Layouts
+import HomeLayoutHoc from './HOC/Home.hoc';
+//pages
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-  <>
-    <HomeLayoutHoc component={Homepage} path="/" />
-    <HomeLayoutHoc component={Homepage} path="/:type"/>
-  </>
-  );
+    <>
+    
+      <HomeLayoutHoc component={HomePage} path="/"/>
+      <HomeLayoutHoc component={HomePage} path="/:type"/>
+
+      
+    </>
+    );
 }
 
 export default App;
