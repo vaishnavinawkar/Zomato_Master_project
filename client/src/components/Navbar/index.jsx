@@ -9,12 +9,12 @@ function MobileNav(){
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
     const [user, setUser] = useState({});
     return(
-        <div className="flex w-full items-center justify-between lg:hidden">
-        <div className="w-28">
+        <div className="flex w-full items-center  justify-between lg:hidden">
+        <div className=" w-28 ">
             <img
             src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
             alt=""
-            className="w-full h-full"
+            className=" w-full h-full"
             />
         </div>
         <div className="flex items-center gap-3 relative">
@@ -139,7 +139,7 @@ function LargeNav(){
 function Navbar() {
     return (
         <>
-        <nav className='p-4 flex bg-white shadow-md lg:shadow-none w-full items-center'>
+        <nav className='p-4 px-20 flex bg-white shadow-md lg:shadow-none w-full items-center'>
             <MobileNav />
             <LargeNav />
         </nav>
