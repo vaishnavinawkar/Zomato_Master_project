@@ -54,26 +54,26 @@ function CartContainer() {
   const [isOpen, setIsOpen] = useState(false);
   const [cartData, setCartData] = useState([]);
   const [foods, setFoods] = useState([
-    // {
-    //   image:
-    //     "https://b.zmtcdn.com/data/dish_photos/87c/153beb91af9f43e157f3d6fd6ea2587c.jpg?output-format=webp",
-    //   name: "Chilli Paneer Gravy",
-    //   price: "157.50",
-    //   rating: 4,
-    //   descript:
-    //     "Chicken NoodelsChicken Fried Rice+Chilli ChickenChicken Manchurian+Chilli PotatoHoney Chilli Potato+Chicken Chilli Garlic Momos [2 ... read more",
-    //   quantity: 1,
-    // },
-    // {
-    //   image:
-    //     "https://b.zmtcdn.com/data/dish_photos/87c/153beb91af9f43e157f3d6fd6ea2587c.jpg?output-format=webp",
-    //   name: "Chilli Paneer Gravy",
-    //   price: "157.50",
-    //   rating: 4,
-    //   descript:
-    //     "Chicken NoodelsChicken Fried Rice+Chilli ChickenChicken Manchurian+Chilli PotatoHoney Chilli Potato+Chicken Chilli Garlic Momos [2 ... read more",
-    //   quantity: 1,
-    // },
+    {
+      image:
+        "https://b.zmtcdn.com/data/dish_photos/87c/153beb91af9f43e157f3d6fd6ea2587c.jpg?output-format=webp",
+      name: "Chilli Paneer Gravy",
+      price: "157.50",
+      rating: 4,
+      descript:
+        "Chicken NoodelsChicken Fried Rice+Chilli ChickenChicken Manchurian+Chilli PotatoHoney Chilli Potato+Chicken Chilli Garlic Momos [2 ... read more",
+      quantity: 1,
+    },
+    {
+      image:
+        "https://b.zmtcdn.com/data/dish_photos/87c/153beb91af9f43e157f3d6fd6ea2587c.jpg?output-format=webp",
+      name: "Chilli Paneer Gravy",
+      price: "157.50",
+      rating: 4,
+      descript:
+        "Chicken NoodelsChicken Fried Rice+Chilli ChickenChicken Manchurian+Chilli PotatoHoney Chilli Potato+Chicken Chilli Garlic Momos [2 ... read more",
+      quantity: 1,
+    },
   ]);
 
   const toggleCart = () => setIsOpen((prev) => !prev);

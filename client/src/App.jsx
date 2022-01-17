@@ -7,10 +7,14 @@ import { Redirect, Route } from 'react-router'
 //Layouts
 import HomeLayoutHoc from './HOC/Home.hoc';
 import RestaurantLayoutHoc from './HOC/Restaurant.hoc';
+import CheckoutLayoutHoc from './HOC/Checkout.hoc';
 
 //pages
 import HomePage from './pages/HomePage';
 import RestaurantPage from './pages/RestaurantPage';
+import Checkout from './pages/CheckoutPage';
+
+//Components
 import Overview from './components/Restaurant/Overview';
 import OrderOnline from './components/Restaurant/OrderOnline';
 import Reviews from './components/Restaurant/Reviews/Reviews';
@@ -58,6 +62,8 @@ function App() {
         exact
         component={Photos}
       />
+
+<CheckoutLayoutHoc path="/checkout/orders" exact component={Checkout} />
 
     </>
     );
