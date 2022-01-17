@@ -2,20 +2,49 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
 import Slider from "react-slick";
-import ReactStars from " react-rating-stars-component";
+import ReactStars from "react-rating-stars-component"
 
 // components
 import { NextArrow, PrevArrow } from "../CarouselArrow";
 import MenuCollection from "./MenuCollection";
 import MenuSimilarRestaurantCard from "./MenuSimilarRestaurantCard";
-// import ReviewCard from "./Reviews/ReviewCard";
-// import MapView from "./MapView";
+import ReviewCard from "./Reviews/ReviewCard";
+import MapView from "./MapView";
 
 
 function Overview() {
 
-    const [menuImages, setMenuImages] = useState({ images: [] });
-    const [reviews, setReviews] = useState([]);
+    const [menuImages, setMenuImages] = useState({ images: [
+        "https://b.zmtcdn.com/data/menus/069/19257069/9ba55d8b059559d9c0e30f0e1fc4b65d.jpg",
+        "https://b.zmtcdn.com/data/menus/179/19013179/6cd884a189a546bee45fbac0acf8c355.jpg",
+        "https://b.zmtcdn.com/data/menus/179/19013179/203e52d7fa4f48e25e7c50d5551a2861.jpg"
+    ] });
+    const [reviews, setReviews] = useState([
+        {
+            isRestaurantReview: false,
+            createAt: "2020-05-01",
+            fullName: "John Deo",
+            reviewText: "Food was Good, bur service was slow",
+        },
+        {
+            isRestaurantReview: false,
+            createAt: "2020-05-01",
+            fullName: "John Deo",
+            reviewText: "Food was Good, bur service was slow",
+        },
+        {
+            isRestaurantReview: false,
+            createAt: "2021-09-01",
+            fullName: "John Deo",
+            reviewText: "Food was Good, bur service was slow",
+        },
+        {
+            isRestaurantReview: false,
+            createAt: "2020-05-01",
+            fullName: "John Deo",
+            reviewText: "Food was Good, bur service was slow",
+        },
+    ]);
     const [cuisine, setCuisine] = useState(["Modern Indian", "Bar Food"]);
     const averageCost = 200;
 
@@ -25,11 +54,25 @@ function Overview() {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: 2,
+        slidesToScroll: 2,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
         responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                },
+            },
             {
                 breakpoint: 480,
                 settings: {
@@ -52,8 +95,7 @@ function Overview() {
             return mapAddress?.split(",").map((item) => parseFloat(item));
         };
 
-
-
+        
     return (
     <>
     <div className="flex flex-col gap-5 md:flex-row relative">
@@ -74,7 +116,7 @@ function Overview() {
               menuTitle="Menu"
               pages="3"
             //   pages={menuImages.length}
-              image={menuImages}
+              image={menuImages.images}
             />
         </div>
         <h4 className="text-lg font-medium my-4">Cuisines</h4>
@@ -93,8 +135,6 @@ function Overview() {
         </small>
 
         </div>
-
-
 
         <div className="my-4">
         <h4 className="text-lg font-medium">Similar Restaurants</h4>
@@ -127,7 +167,8 @@ function Overview() {
             </Slider>
         </div>
         </div>
-        <div className="my-4">
+
+        <div className="my-4 ">
             <h4 className="text-lg font-medium">
                 Rate your delivery experience
             </h4>
@@ -138,19 +179,22 @@ function Overview() {
                 size={24}
                 activeColor="#ffd700"
             />
-{/* 
+
             {reviews.map((review, index) => (
                 <ReviewCard {...review} key={index} />
-            ))} */}
+            ))}
         </div>
+
+ 
+        
         <div className="my-4 w-full md:hidden flex flex-col gap-4">
-            ...MAp Stuff
-            {/* <MapView
+            
+            <MapView
                 title="McDonald's"
                 phno="+919234345634"
                 mapLocation={getLatLong("28.64435706075414, 77.11929960209767")}
                 address="Shop 52, Plot 8, 9 & 10, G-8, Ground Floor, DDA Market, J-Block, Community Centre, Rajouri Garden, New Delhi"
-            /> */}
+            />
 
         </div>
         </div>
@@ -158,16 +202,18 @@ function Overview() {
             style={{ height: "fit-content" }}
             className="hidden md:flex md:w-4/12 sticky rounded-xl top-10 bg-white p-3 shadow-md flex-col gap-4"
         >
-            ...Map Stuff
-            {/* <MapView
+        
+            <MapView
             title="McDonald's"
             phno="+919234345634"
             mapLocation={getLatLong("28.64435706075414, 77.11929960209767")}
             address="Shop 52, Plot 8, 9 & 10, G-8, Ground Floor, DDA Market, J-Block, Community Centre, Rajouri Garden, New Delhi"
-            /> */}
+            />
 
         </aside>
     </div>
+    
+     
 
 
     </>
