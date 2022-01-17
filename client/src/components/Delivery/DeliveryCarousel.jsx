@@ -51,7 +51,7 @@ function DeliveryCarousel() {
             arrows: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 5,
+            slidesToShow: 4,
             slidesToScroll: 1,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
@@ -68,15 +68,15 @@ function DeliveryCarousel() {
 
     return (
         <>
-        <h1 className="text-xl mb-4 font-semibold">
+        <h1 className="text-xl mb-4 px-20 font-semibold">
             Inspitation for your first order
         </h1>
-        <div className="lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between">
+        <div className="lg:hidden flex gap-3 lg:gap-0 px-20 flex-wrap justify-between">
             {categories.map((food) => (
             <DeliveryCategory {...food} />
             ))}
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden px-20 lg:block">
             <Slider {...settings}>
             {categories.map((food) => (
                 <DeliveryCategory {...food} />

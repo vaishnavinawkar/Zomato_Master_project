@@ -4,7 +4,7 @@ import ReactStars from "react-rating-stars-component";
 
 function NutritionCard(props) {
     return (
-        <div className="w-full p-4 md:w-1/3 lg:w-1/4">
+        <div className="w-full px-10 p-4 md:w-1/2 lg:w-1/3">
         <div className="w-full h-full bg-white rounded-2xl shadow-lg">
             <div
             className={`w-full p-4 h-72 md:h-60 lg:h-80 rounded-t-2xl bg-${props.bg}-100`}

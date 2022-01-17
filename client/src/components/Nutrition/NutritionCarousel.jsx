@@ -56,7 +56,7 @@ return (
             <NutritionCarouselCard {...food} key={index} />
             ))}
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden px-20 lg:block">
             <Slider {...settings}>
             {categories.map((food, index) => (
                 <NutritionCarouselCard {...food} key={index} />

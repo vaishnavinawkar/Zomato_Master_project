@@ -21,7 +21,7 @@ function NutritionCard({ image, title }) {
 
 function NutritionCarouselCard(props) {
 return (
-    <div className="h-full">
+    <div className="h-full ">
         <NutritionCard {...props} />
     </div>
 );

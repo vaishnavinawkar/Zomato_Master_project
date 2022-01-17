@@ -2,7 +2,7 @@ import React from 'react';
 
 function NutritionHeroCarouselCard(props) {
     return (
-        <div className="w-full h-80 ">
+        <div className="w-full px-20 h-80 ">
             <img
                 src={props.image}
                 alt="nutrition banner"
