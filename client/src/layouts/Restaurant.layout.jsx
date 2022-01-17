@@ -9,6 +9,7 @@ import ImageGrid from '../components/Restaurant/ImageGrid';
 import RestaurantInfo from '../components/Restaurant/RestaurantInfo';
 import InfoButton from '../components/Restaurant/InfoButton';
 import Tabs from '../components/Restaurant/Tabs';
+import CartContainer from '../components/Cart/CartContainer';
 
 function RestaurantLayout({children}) {
 
@@ -61,6 +62,8 @@ function RestaurantLayout({children}) {
             </div>
             {children}
         </div>
+
+        <CartContainer />
 
         
 
