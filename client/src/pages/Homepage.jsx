@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useDispatch } from "react-redux";
+
+// redux actions
+import { getRestaurant } from "../redux/reducers/restaurant/restaurant.action";
+
+//components
 import Delivery from '../components/Delivery';
 import Dining from '../components/Dining';
 import NightLife from '../components/NightLife';
@@ -7,6 +13,13 @@ import Nutrition from '../components/Nutrition';
 
 function HomePage() {
     const {type} = useParams();
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getRestaurant());
+    }, []);
+
 
     return (
         <>
