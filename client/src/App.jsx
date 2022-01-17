@@ -13,6 +13,9 @@ import HomePage from './pages/HomePage';
 import RestaurantPage from './pages/RestaurantPage';
 import Overview from './components/Restaurant/Overview';
 import OrderOnline from './components/Restaurant/OrderOnline';
+import Reviews from './components/Restaurant/Reviews/Reviews';
+import Menu from './components/Restaurant/Menu/Menu';
+import Photos from './components/Restaurant/Photos/Photos';
 
 
 function App() {
@@ -43,17 +46,17 @@ function App() {
       <RestaurantLayoutHoc
         path="/restaurant/:id/reviews"
         exact
-        component={HomePage}
+        component={Reviews}
       />
         <RestaurantLayoutHoc
         path="/restaurant/:id/menu"
         exact
-        component={HomePage}
+        component={Menu}
       />
       <RestaurantLayoutHoc
         path="/restaurant/:id/photos"
         exact
-        component={HomePage}
+        component={Photos}
       />
 
     </>
