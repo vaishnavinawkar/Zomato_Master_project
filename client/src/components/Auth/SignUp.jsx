@@ -6,6 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/reducers/auth/auth.action";
 
+
+
 function Signup({ isOpen, setIsOpen }) {
   const [userData, setUserData] = useState({
     email: "",
@@ -25,6 +27,7 @@ function Signup({ isOpen, setIsOpen }) {
 
   const submit = () => {
     dispatch(signUp(userData));
+  
     setUserData({ email: "", password: "", fullName: "" });
     closeModal();
   };

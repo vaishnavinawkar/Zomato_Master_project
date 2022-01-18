@@ -24,8 +24,10 @@ function Signin({ isOpen, setIsOpen }) {
 
   const submit = () => {
     dispatch(signIn(userData));
+  
     setUserData({ email: "", password: "" });
     closeModal();
+
   };
 
   const googleSignIn = () =>
