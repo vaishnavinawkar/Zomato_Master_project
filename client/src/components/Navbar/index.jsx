@@ -72,7 +72,7 @@ function LargeNav({ SignIn, SignUp }){
     const [user, setUser] = useState({});
     return(
         <>
-        <div className="hidden lg:inline container px-20 mx-auto">
+        <div className="hidden lg:inline container  mx-auto">
             <div className="gap-4 w-full items-center justify-around flex">
                 <div className="w-20">
                 <img

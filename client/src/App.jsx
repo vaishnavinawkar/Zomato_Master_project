@@ -1,8 +1,9 @@
 import './App.css';
+// import React, { useEffect } from "react";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { Redirect, Route } from 'react-router'
-// import {Switch} from 'react-router-dom';
+
 
 //Layouts
 import HomeLayoutHoc from './HOC/Home.hoc';
@@ -11,8 +12,10 @@ import CheckoutLayoutHoc from './HOC/Checkout.hoc';
 
 //pages
 import HomePage from './pages/HomePage';
-import RestaurantPage from './pages/RestaurantPage';
+//import RestaurantPage from './pages/RestaurantPage';
 import Checkout from './pages/CheckoutPage';
+// import GoogleAuth from "./pages/GoogleAuth";
+//import RedirectRestaurant from "./pages/Restaurant/Redirect";
 
 //Components
 import Overview from './components/Restaurant/Overview';
@@ -21,20 +24,33 @@ import Reviews from './components/Restaurant/Reviews/Reviews';
 import Menu from './components/Restaurant/Menu/Menu';
 import Photos from './components/Restaurant/Photos/Photos';
 
+// redux
+// import { useDispatch } from "react-redux";
+// import { getMySelf } from "./redux/reducers/user/user.action";
+
 
 function App() {
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getMySelf());
+  // }, [localStorage]);
+
   return (
     <>
     
       <Route path="/" exact>
         <Redirect to="/delivery" />
       </Route>
+      {/* <Route path="/restaurant/:id" exact component={RedirectRestaurant} /> */}
       {/* <HomeLayoutHoc component={HomePage} path="/"/> */}
       <HomeLayoutHoc exact component={HomePage} path="/:type"/>
+      {/* <HomeLayoutHoc path="/google/:token" exact component={GoogleAuth} /> */}
       <RestaurantLayoutHoc
         path='/restaurant/:id'
         exact
-        component={RestaurantPage}
+        component={Redirect}
       />
 
       <RestaurantLayoutHoc 
