@@ -88,7 +88,7 @@ Router.post("/", upload.single("file"), async (req, res) => {
 
     // s3 bucket options
     const bucketOptions = {
-      Bucket: "zomato-master-a0721",
+      Bucket: "zomato-masterclone",
       Key: file.originalname,
       Body: file.buffer,
       ContentType: file.mimetype,

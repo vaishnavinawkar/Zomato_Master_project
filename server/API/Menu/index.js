@@ -1,56 +1,108 @@
-//Libraries
-import express from 'express';
+// Libraries
+import express from "express";
 
-//DAtabase modal
-import {MenuModel, ImageModel} from '../../database/allModels';
-
+// Database modal
+import { MenuModel, ImageModel } from "../../database/allModels";
 
 const Router = express.Router();
 
-/* 
-* Router               /list
-* Description          GEt all list of menu basedon resturant id
-* Parameters           _id
-* Access               Public
-* Method               GET
-*/
+/**
+ * Route        /list
+ * Des          GET all list of menu based on restaurant id
+ * Params       _id
+ * Access       Public
+ * Method       GET
+ */
+Router.get("/list/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const menus = await MenuModel.findById(_id);
 
-Router.get('/list/:_id', async (req,res)=> {
-    try{
-
-        const {_id} = req.params;
-        const menus = await MenuModel.findById(_id);
-
-        if (!menus) {
-            res.status(404).json({error: "No menu present for this restuarant"});
-        }
-
-        return res.json({menus});
-    } catch(error){
-        return res.status(500).json({error: error.message});
-        
+    if (!menus) {
+      res.status(404).json({ error: "No menu present for this restaurant" });
     }
+
+    return res.json({ menus });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
-/* 
-* Router               /image
-* Description          GEt all list of menu images with resturant id
-* Parameters           _id
-* Access               Public
-* Method               GET
-*/
+/**
+ * Route        /image
+ * Des          GET all list of menu images with restaurant id
+ * Params       _id
+ * Access       Public
+ * Method       GET
+ */
+Router.get("/image/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const menuImages = await ImageModel.findOne(_id);
 
-Router.get('/image/:_id', async (res, req)=>{
-    try{
+    //TODO: vaildate if the images are present or not, throw error if not present
 
-        const {_id}= req.params;
-        const menuImages = await ImageModel.findOne(_id);
-
-        //TODO: validate if the images are presne tor not throw error
-
-    } catch (error){
-        return res.status(500).json({error: error.message});
-    }
+    return res.json({ menuImages });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
 export default Router;
+
+// //Libraries
+// import express from 'express';
+
+// //DAtabase modal
+// import {MenuModel, ImageModel} from '../../database/allModels';
+
+
+// const Router = express.Router();
+
+// /* 
+// * Router               /list
+// * Description          GEt all list of menu basedon resturant id
+// * Parameters           _id
+// * Access               Public
+// * Method               GET
+// */
+
+// Router.get('/list/:_id', async (req,res)=> {
+//     try{
+
+//         const {_id} = req.params;
+//         const menus = await MenuModel.findById(_id);
+
+//         if (!menus) {
+//             res.status(404).json({error: "No menu present for this restuarant"});
+//         }
+
+//         return res.json({menus});
+//     } catch(error){
+//         return res.status(500).json({error: error.message});
+        
+//     }
+// });
+
+// /* 
+// * Router               /image
+// * Description          GEt all list of menu images with resturant id
+// * Parameters           _id
+// * Access               Public
+// * Method               GET
+// */
+
+// Router.get('/image/:_id', async (res, req)=>{
+//     try{
+
+//         const {_id}= req.params;
+//         const menuImages = await ImageModel.findOne(_id);
+
+//         //TODO: validate if the images are presne tor not throw error
+
+//     } catch (error){
+//         return res.status(500).json({error: error.message});
+//     }
+// });
+
+// export default Router;

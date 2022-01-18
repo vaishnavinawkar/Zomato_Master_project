@@ -1,74 +1,142 @@
-//Libraries
+// Libraries
 import express from "express";
+import passport from "passport";
 
-//Database modal
+// Database Model
 import { ReviewModel } from "../../database/allModels";
 
-const Router= express.Router();
-/* 
-* Router               /:resid
-* Description           GEt all reviews for a particular resturant
-* Parameters            resid
-* Access                Public
-* Method                GET
-*/
+const Router = express.Router();
 
-Router.get("/:resid", async(req, res)=> {
-    try{
-        const {resid} = req.params;
+/**
+ * Route        /:resid
+ * Des          GET all reviews for a particular restaurant
+ * Params       resid
+ * Access       Public
+ * Method       GET
+ */
+Router.get("/:resid", async (req, res) => {
+  try {
+    const { resid } = req.params;
+    const reviews = await ReviewModel.find({ restaurants: resid });
 
-        const reviews = await ReviewModel.find({restaurants: resid});
-
-        return res.json({reviews});
-
-    }catch(error){
-        return res.status(500).json({error: error.message});
-    }
+    return res.json({ reviews });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
-/* 
-* Router               /new
-* Description          Post : adding new food /resturant review and rating
-* Parameters           none
-* Access               Public
-* Method               POst
-*/
+/**
+ * Route        /new
+ * Des          POST: Adding new food/restaurant review and rating
+ * Params       none
+ * Access       Private
+ * Method       POST
+ */
+Router.post("/new", passport.authenticate("jwt"), async (req, res) => {
+  try {
+    const { _id } = req.session.passport.user._doc;
+    const { reviewData } = req.body;
 
-Router.post("/:new", async(req,res) => {
-    try{
-        const {reviewData} = req.body;
+    await ReviewModel.create({ ...reviewData, user: _id });
 
-        await ReviewModel.create({...reviewData});
-
-        return res.json({reviews: "Successfully created Review"});
-    }catch(error){
-        return res.status(500).json({error: error.message});
-
-    }
-
+    return res.json({ reviews: "Successfully Created Review" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
-/* 
-* Router               /delete/:_id
-* Description          delete a specific review
-* Parameters           _id
-* Access               Public
-* Method               DELETE
-*/
+/**
+ * Route        /delete/:id
+ * Des          Delete a specific review
+ * Params       _id
+ * Access       Public
+ * Method       DELETE
+ */
+Router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { _id } = req.params;
 
-Router.delete("/delete/:_id", async(req, res)=> {
-    try{
-        const {_id} = req.params;
+    await ReviewModel.findByIdAndDelete(_id);
 
-        await ReviewModel.findByIdAndDelete(_id);
-
-        return res.json({review: "successfully deleted the review."});
-
-    }catch(error){
-        return res.status(500).json({error: error.message});
-
-    }
+    return res.json({ review: "Sucessfully deleted the review." });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
-
 
 export default Router;
+
+// //Libraries
+// import express from "express";
+
+// //Database modal
+// import { ReviewModel } from "../../database/allModels";
+
+// const Router= express.Router();
+// /* 
+// * Router               /:resid
+// * Description           GEt all reviews for a particular resturant
+// * Parameters            resid
+// * Access                Public
+// * Method                GET
+// */
+
+// Router.get("/:resid", async(req, res)=> {
+//     try{
+//         const {resid} = req.params;
+
+//         const reviews = await ReviewModel.find({restaurants: resid});
+
+//         return res.json({reviews});
+
+//     }catch(error){
+//         return res.status(500).json({error: error.message});
+//     }
+// });
+
+// /* 
+// * Router               /new
+// * Description          Post : adding new food /resturant review and rating
+// * Parameters           none
+// * Access               Public
+// * Method               POst
+// */
+
+// Router.post("/:new", async(req,res) => {
+//     try{
+//         const {reviewData} = req.body;
+
+//         await ReviewModel.create({...reviewData});
+
+//         return res.json({reviews: "Successfully created Review"});
+//     }catch(error){
+//         return res.status(500).json({error: error.message});
+
+//     }
+
+// });
+
+// /* 
+// * Router               /delete/:_id
+// * Description          delete a specific review
+// * Parameters           _id
+// * Access               Public
+// * Method               DELETE
+// */
+
+// Router.delete("/delete/:_id", async(req, res)=> {
+//     try{
+//         const {_id} = req.params;
+
+//         await ReviewModel.findByIdAndDelete(_id);
+
+//         return res.json({review: "successfully deleted the review."});
+
+//     }catch(error){
+//         return res.status(500).json({error: error.message});
+
+//     }
+// });
+
+
+// export default Router;
