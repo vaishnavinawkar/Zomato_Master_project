@@ -66,8 +66,6 @@ export const googleAuth = (token) => async (dispatch) => {
   try {
     localStorage.setItem("zomatoUser", JSON.stringify({ token }));
 
-
-
     return dispatch({ type: GOOGLE_AUTH, payload: {} });
   } catch (error) {
     return dispatch({ type: "ERROR", payload: error });
