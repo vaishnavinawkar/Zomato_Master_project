@@ -1,28 +1,20 @@
-import axios from "axios";
+import { GET_FOOD_LIST } from "./food.type";
 
-// redux types
-import { GET_FOOD_LIST, GET_FOOD } from "./food.type";
-
-export const getFood = (foodId) => async (dispatch) => {
-  try {
-    const Food = await axios({
-      method: "GET",
-      url: `http://localhost:4000/food/${foodId}`,
-    });
-    return dispatch({ type: GET_FOOD, payload: Food.data });
-  } catch (error) {
-    return dispatch({ type: "ERROR", payload: error });
-  }
+const initialState = {
+  foodList: [],
 };
 
-export const getFoodList = (menuId) => async (dispatch) => {
-  try {
-    const Menu = await axios({
-      method: "GET",
-      url: `http://localhost:4000/menu/list/${menuId}`,
-    });
-    return dispatch({ type: GET_FOOD_LIST, payload: Menu.data });
-  } catch (error) {
-    return dispatch({ type: "ERROR", payload: error });
+const foodReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_FOOD_LIST:
+      return {
+        ...state,
+        foodList: action.payload,
+      };
+    default:
+      return {
+        ...state,
+      };
   }
 };
+export default foodReducer;

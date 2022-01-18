@@ -4,7 +4,7 @@ import axios from "axios";
 import { SIGN_OUT, SIGN_IN, SIGN_UP, GOOGLE_AUTH } from "./auth.type";
 
 // redux actions
-import { clearUser } from "../user/user.action";
+import {  clearUser } from "../user/user.action";
 
 export const signIn = (userData) => async (dispatch) => {
   try {
@@ -13,6 +13,8 @@ export const signIn = (userData) => async (dispatch) => {
       url: `http://localhost:4000/auth/signin`,
       data: { credentials: userData },
     });
+
+ 
 
     localStorage.setItem(
       "zomatoUser",
@@ -63,6 +65,8 @@ export const signOut = () => async (dispatch) => {
 export const googleAuth = (token) => async (dispatch) => {
   try {
     localStorage.setItem("zomatoUser", JSON.stringify({ token }));
+
+
 
     return dispatch({ type: GOOGLE_AUTH, payload: {} });
   } catch (error) {
