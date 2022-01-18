@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import { getImage } from "../../../redux/reducers/image/image.action";
 
 // components
 import MenuCollection from "../MenuCollection";
 
 function Menu() {
-const [menus] = useState([
-    "https://b.zmtcdn.com/data/menus/069/19257069/9ba55d8b059559d9c0e30f0e1fc4b65d.jpg",
-        "https://b.zmtcdn.com/data/menus/179/19013179/6cd884a189a546bee45fbac0acf8c355.jpg",
-        "https://b.zmtcdn.com/data/menus/179/19013179/203e52d7fa4f48e25e7c50d5551a2861.jpg"
-]);
-return (
+  const dispatch = useDispatch();
+  const [menus, setMenu] = useState([]);
+  const reduxState = useSelector(
+    (globalState) => globalState.restaurant.selectedRestaurant.restaurant
+  );
+
+  useEffect(() => {
+    if (reduxState)
+      dispatch(getImage(reduxState?.menuImages)).then((data) => {
+        const images = [];
+        data.payload.images.map(({ location }) => images.push(location));
+        console.log(images);
+        setMenu(images);
+      });
+  }, [reduxState]);
+
+  return (
     <div className="flex flex-wrap gap-3">
-        <MenuCollection menuTitle="Menu" pages={menus.length} image={menus} />
+      <MenuCollection menuTitle="Menu" pages={menus.length} image={menus} />
     </div>
-);
+  );
 }
 
 export default Menu;

@@ -177,4 +177,3 @@ export default function ReviewModal({ isOpen, setIsOpen, ...props }) {
     </>
   );
 }
-
