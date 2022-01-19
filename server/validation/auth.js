@@ -1,33 +1,63 @@
-//we have to tacl all the following situation
-/*
-fullName= "";
-fullName= " ";
-fullName= "asdf";
-fullName= undefined;
-*/
-
-
 import joi from "joi";
 
-export const ValidateSignup = (userData)=> {
-    const Schema = joi.object({
-        fullName: joi.string().required().min(5),
-        email: joi.string().email().required(),
-        password: joi.string(),
-        address: joi
-        .array()
-        .items(joi.object( {deatil: joi.string(), for: joi.string() })),
-        phoneNumber: joi.number(),
+export const ValidateSignup = (userData) => {
+  const Schema = joi.object({
+    fullName: joi.string().required().min(5),
+    email: joi.string().email().required(),
+    password: joi.string(),
+    address: joi
+      .array()
+      .items(joi.object({ details: joi.string(), for: joi.string() })),
+    phoneNumber: joi.number(),
+  });
 
-    });
-    return Schema.validateAsync(userData);
+  return Schema.validateAsync(userData);
 };
 
-export const ValidateSignin = (userData)=> {
-    const Schema = joi.object({
-        email: joi.string().email().required(),
-        password: joi.string().required()
-    });
+export const ValidateSignin = (userData) => {
+  const Schema = joi.object({
+    email: joi.string().email().required(),
+    password: joi.string().required(),
+  });
 
-    return Schema.validateAsync(userData);
+  return Schema.validateAsync(userData);
 };
+
+//--------------------------------------------
+
+// //we have to tacl all the following situation
+// /*
+// fullName= "";
+// fullName= " ";
+// fullName= "asdf";
+// fullName= undefined;
+// */
+
+//----------------------------------------
+
+// import joi from "joi";
+
+// export const ValidateSignup = (userData)=> {
+//     const Schema = joi.object({
+//         fullName: joi.string().required().min(5),
+//         email: joi.string().email().required(),
+//         password: joi.string(),
+//         address: joi
+//         .array()
+//         .items(joi.object( {deatil: joi.string(), for: joi.string() })),
+//         phoneNumber: joi.number(),
+
+//     });
+//     return Schema.validateAsync(userData);
+// };
+
+// export const ValidateSignin = (userData)=> {
+//     const Schema = joi.object({
+//         email: joi.string().email().required(),
+//         password: joi.string().required()
+//     });
+
+//     return Schema.validateAsync(userData);
+// };
+
+//-------------------------------

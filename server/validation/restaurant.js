@@ -1,18 +1,35 @@
-import joi from 'joi';
+import joi from "joi";
 
-export const ValidateRestaurantCity= (restaurantObject) => {
-    const Schema = joi.object({
-        city: joi().string().required(),
-    });
+export const ValidateRestaurantCity = (restaurantObject) => {
+  const Schema = joi.object({
+    city: joi().string().required(),
+  });
 
-    return Schema.validateAsync(restaurantObject);
-
+  return Schema.validateAsync(restaurantObject);
 };
 
 export const ValidateRestaurantSearchString = (restaurantObject) => {
-    const Schema = joi.object({
-        searchString: joi.string().required(),
-    });
+  const Schema = joi.object({
+    searchString: joi.string().required(),
+  });
 
-    return Schema.validateAsync(restaurantObject);
+  return Schema.validateAsync(restaurantObject);
 };
+// import joi from 'joi';
+
+// export const ValidateRestaurantCity= (restaurantObject) => {
+//     const Schema = joi.object({
+//         city: joi().string().required(),
+//     });
+
+//     return Schema.validateAsync(restaurantObject);
+
+// };
+
+// export const ValidateRestaurantSearchString = (restaurantObject) => {
+//     const Schema = joi.object({
+//         searchString: joi.string().required(),
+//     });
+
+//     return Schema.validateAsync(restaurantObject);
+// };
