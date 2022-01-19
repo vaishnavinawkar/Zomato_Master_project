@@ -11,7 +11,7 @@ import RestaurantLayoutHoc from './HOC/Restaurant.hoc';
 import CheckoutLayoutHoc from './HOC/Checkout.hoc';
 
 //pages
-import HomePage from './pages/HomePage';
+ import Homepage from './pages/Homepage';
 //import RestaurantPage from './pages/RestaurantPage';
 import Checkout from './pages/CheckoutPage';
 import GoogleAuth from "./pages/GoogleAuth";
@@ -47,7 +47,7 @@ function App() {
       </Route>
       <Route path="/restaurant/:id" exact component={RedirectRestaurant} /> 
       {/* <HomeLayoutHoc component={HomePage} path="/"/> */}
-      <HomeLayoutHoc exact component={HomePage} path="/:type"/>
+      <HomeLayoutHoc exact component={Homepage} path="/:type"/>
       <HomeLayoutHoc path="/google/:token" exact component={GoogleAuth} />
       <RestaurantLayoutHoc
         path='/restaurant/:id'
